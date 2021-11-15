@@ -20,7 +20,6 @@ output "containers" {
   ))
 }
 
-
 output "static_host" {
   value = azurerm_storage_account.account.primary_web_host
 }
