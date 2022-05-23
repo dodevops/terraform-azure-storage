@@ -5,6 +5,16 @@ resource "azurerm_storage_account" "account" {
   name                     = "${lower(var.project)}${lower(var.stage)}storacc${var.suffix}"
   resource_group_name      = var.resource_group
   allow_blob_public_access = var.allow_blob_public_access
+  min_tls_version          = "TLS1_2"
+  queue_properties {
+    logging {
+      delete                = true
+      read                  = true
+      write                 = true
+      version               = "2.0"
+      retention_policy_days = 14
+    }
+  }
   static_website {
     index_document     = var.static_website_index_document
     error_404_document = var.static_website_error_404_document
